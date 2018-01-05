@@ -195,3 +195,21 @@ xhr.open('get', 'example.com/example.json', true);
 xhr.setRequestHeader('myHeader', 'myValue');//send the request
 xhr.send(null);
 ```
+
+* open方法
+    ```
+    xhr.open(method, url[, async = true])
+    ```
+* setReuest方法
+    ```js
+    xhr.setRequestHeader(header,value);
+    header: Content-Type
+    value: application/x-www-form-urlencoded
+            multipart/form-data
+    ```
+* send方法
+    ```js
+    //表示FormData
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    xhr.send([data=null]);
+    ```
