@@ -68,7 +68,6 @@ var mouseDownHandler = function(event){
     clientY = event.clientY;
     moving = !0;
 }
-
 var mouseMoveHandler function(event){
     if(!moving) return;
     event = event||window.event;
@@ -81,7 +80,6 @@ var mouseMoveHandler function(event){
     clientX = newClientX;
     clientY = newClientY;
 }
-
 var mouseUpHandler = function(event){
     moving = !1;
 }
@@ -97,7 +95,6 @@ addEvent(elem, 'mouseup'， mouseUpHandler);
         * deltaX
         * deltaY
         * deltaZ
-
 * FocusEvent
     * blur 
     * focus
@@ -109,3 +106,44 @@ addEvent(elem, 'mouseup'， mouseUpHandler);
     * beforeInput: 先触发这个事件，输入框还没有内容
     * input:不断输入内容时，不断触发input
     * onporopertychange(兼容IE)
+
+* keyboardEvent:
+    * keydown
+    * keyup
+    * 属性
+        * key
+        * code
+        * ctrlKey, shiftKey, altKey, metaKey
+        * repeat：一个键重复按下，持续按
+        * keyCode:Ascii码
+        * charCode：Ascii码
+        * which
+
+### Event类型：
+* load : window, image, iframe元素
+* unload：关闭页面，window元素
+* error:加载错误， window,image
+* select: Element, input ,textarea
+* abort: window image:触发图片的abort事件。
+
+* window:
+    * load
+    * unload:关闭了当前页面
+    * error:浏览器出现异常
+* Image: 依赖网络加载
+    * load: load事件，可知图片长宽
+    * error:
+    * abort:
+常见例子
+    ```html
+    <img onerror = 'this.src = "host/default.jpg"'/>
+    ````
+
+### UIEvent
+* resize | window/iframe
+* scroll | document/div
+
+
+###事件代理
+    * 优势：内存分配少，管理少
+    * 全部放在顶层，比如window,所有事件都会冒泡到顶部，会处理各种类型各种元素的事件。
