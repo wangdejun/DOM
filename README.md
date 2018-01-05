@@ -144,6 +144,54 @@ addEvent(elem, 'mouseup'， mouseUpHandler);
 * scroll | document/div
 
 
-###事件代理
+### 事件代理
     * 优势：内存分配少，管理少
     * 全部放在顶层，比如window,所有事件都会冒泡到顶部，会处理各种类型各种元素的事件。
+
+
+## 数据通信
+
+
+方法      |   描述           |  是否包含主体
+---------|------------------|-------------
+GET    |从服务器获取一份文档 |     否
+POST   |向服务器发送需要处理的数据| 是
+PUT    |将请求的主体部分存储在服务器上 | 是
+DELETE |从服务器上删除一个文档    |否
+HEAD   |只从服务器上获取文档头部   | 否
+TRACE  |对可能经过代理服务器传送到服务器上的去的报文进行追踪|否
+OPTIONS|决定可以在服务器上执行哪些方法 |否
+
+### 常见HTTP状态码
+状态码    |  描述        |原因短语
+---------|-------------|---------
+200|请求成功|OK
+301|资源移动|Moved Permanently
+304|未修改，所请求资源未修改，浏览器读取缓存数据|Not Modified
+400|请求语法错误,服务器无法理解|Bad Request
+404|未找到资源，可以设置个性'404页面'|Not Found
+500|服务器内部错误|Internal Server Error
+
+### Ajax
+* Jesse JamesGarretet
+* Asynchronous Javascript and XML
+* Ajax call example
+```js
+//step1: 创建对象
+var xhr = new XMLHttpRequest();
+//step2: 处理返回的数据，定义如何处理返回数据的方法:
+xhr.onreadystatechange = function(callback){
+    if(xhr.readyState == 4){
+        检测状态码，进行数据处理，传入callback
+        if((xhr.status>=200 && xhr.status<300>)||xhr.status == 304){
+            callback(xhr.responseText);
+        }else{
+            alert('Request was unsuccessful'+ xhr.status);
+        }
+    }
+}
+// step3:发送请求
+xhr.open('get', 'example.com/example.json', true);
+xhr.setRequestHeader('myHeader', 'myValue');//send the request
+xhr.send(null);
+```
