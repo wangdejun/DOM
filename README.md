@@ -1,9 +1,9 @@
 
-#DOM
+# DOM知识纵览
 
 ## 事件(EVENT)
 
-* 注册事件兼容
+* 注册事件(兼容)
 ```js
 //如果有addEventListener,则使用，否则式样compatible way方式：
 var addEvent = document.addEventListener ? 
@@ -29,6 +29,7 @@ var delEvent = document.removeEventListener ?
     }
 ```
 
+* 获取事件对象(兼容)
 ```js
 // event object
 var elem = document.getElementById('div1')
@@ -40,4 +41,5 @@ var clickHanler = function(event){
 
 addEvent(elem, 'click', clickHanler, false);
 ```
+
 * 事件属性
