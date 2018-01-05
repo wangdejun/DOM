@@ -2,6 +2,7 @@
 # DOM知识纵览
 
 ## 事件(EVENT)
+<a href='https://www.w3.org/TR/uievents/#event-type-load'>W3C标准</a>****
 
 * 注册事件(兼容)
 ```js
@@ -42,4 +43,69 @@ var clickHanler = function(event){
 addEvent(elem, 'click', clickHanler, false);
 ```
 
-* 事件属性
+* 属性
+    * type
+    * target(srcElement)
+    * currentTarge
+* 方法
+    * 阻止时间传播
+        * event.stopPropagation()(W3C)
+        * event.cancelBubble = true(IE)
+        * event.stopImmediatePropagation(W3C)
+    * 默认行为
+        * Event.preventDefault(W3C)
+        * Event.returnValue = false(IE低版本)
+        * stopImmediatePropagation()
+
+* 拖拽例子：
+```js
+var elem = document.getElementById('div1');
+var clientX, clientY, moving;
+
+var mouseDownHandler = function(event){
+    event = event||window.event;
+    clientX = event.clientX;
+    clientY = event.clientY;
+    moving = !0;
+}
+
+var mouseMoveHandler function(event){
+    if(!moving) return;
+    event = event||window.event;
+    var newClientX = event.clientX,
+        newClientY = event.clientY;
+    var left = parseInt(elem.style.left)||0,
+        top = parseInt(elem.style.top)||0;
+    elem.style.left = left + (newClientX - clientX) + 'px';
+    elem.style.top = top + (newClientY - clientY) + 'px';
+    clientX = newClientX;
+    clientY = newClientY;
+}
+
+var mouseUpHandler = function(event){
+    moving = !1;
+}
+
+addEvent(elem, 'mousedown', mouseDownHandler);
+addEvent(elem, 'mousemove', mouseMovingHandler);
+addEvent(elem, 'mouseup'， mouseUpHandler);
+```
+
+* WheelEvent
+    * 属性
+        * deltaMode
+        * deltaX
+        * deltaY
+        * deltaZ
+
+* FocusEvent
+    * blur 
+    * focus
+    * focusin 即将或得焦点时
+    * focusout 元素将要失去焦点时
+    * 扩展属性：
+        * -relatedTarget:
+* InputEvent:
+    * beforeInput: 先触发这个事件，输入框还没有内容
+    * input:不断输入内容时，不断触发input
+    * onporopertychange(兼容IE)
