@@ -1,0 +1,20 @@
+<HEAD>
+    <TITLE>空谷悠悠</TITLE>
+   </HEAD>
+   <BODY>
+    <table>
+      <tr>
+          <td id="john" name="myname">John</td>
+          <td>Doe</td>
+          <td id="jack">Jack</td>
+      </tr>
+    </table>
+  
+    <script>
+   var d = document.getElementById("john").getAttributeNode("name");	
+      alert(d.nodeType)
+      alert(d.nodeName)
+      alert(d.nodeValue)	
+    </script>
+   </BODY>
+  </HTML>
