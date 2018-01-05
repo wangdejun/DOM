@@ -35,4 +35,4 @@ var clickHanler = function(event){
 addEvent(elem, 'click', clickHanler, false);
 
 
-时间属性
+事件属性
