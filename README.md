@@ -246,18 +246,66 @@ xhr.send(serialize(formdata));
 ### 同源策略
 
 ### JSONP
+* 劣势 : 只能用于GET请求
+* 优势 : 不需要单独配置服务器，可向不支持CORS的网站请求数据，可兼容低版本浏览器。
 ```js
-//定义一个处理函数
+//define a handle function to handle the response sent back;
 function handleResponse(response){
     alert('My name is' + response.name);
 }
 var script = document.createElement('script');
 script.src = 'http:127.0.0.0:3000/json?callback=handleResponse';
 document.body.insertBefore(script, document.body.firstChild);
-//此后会返回json.js
+//return json.js
 handleResponse({
     name:'NetEase'
 })
-//只能用于GET请求
-//优势:不需要单独配置服务器，可兼容低版本浏览器。
+```
+* 封装一个POST方法
+```js
+//
+function post(url, options, callback){
+    //初始化xhr
+    var xhr = null;
+    if(window.XMLHttpRequest){
+        xhr =  new XMLHttpRequest();
+        //兼容IE
+    }else if(window.ActiveXObject){
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }else{
+        alert("Request are not supportted");
+    }
+
+    xhr.onreadystatechange = function(callback){
+        if(xhr.readyState == 4){
+            if((xhr.status>=200 && xhr.status<300)||(xhr.status==304)){
+                callback(xhr.responseText);
+            }else{
+                alert('Request was unsuccessful' + xhr.status);
+            }
+        }
+    }
+    function serailize(data){
+        //如果没有data,那么直接返回；
+        if(!data)
+            return;
+        //遍历数据对象
+        for(var name in data){
+            // 遍历顶层属性，如果不存在key,直接跳过；
+            if(!data.hasOwnProperty(name))
+                continue;
+            // 对象类型为function的直接跳过。
+            if(!typeof data[name]==='function')
+                continue;
+            //value直接转为字符串，call the toString()方法；
+            var value = data[name].toString();
+
+            name = encodeURIComponent(name);
+            value= encodeURIComponent(value);
+            pairs.push(name + '=' +value);
+        }
+        return pairs.join('&');
+    }
+}
+//
 ```
