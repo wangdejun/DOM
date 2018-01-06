@@ -173,13 +173,13 @@ OPTIONS|决定可以在服务器上执行哪些方法 |否
 500|服务器内部错误|Internal Server Error
 
 ### Ajax
-* Jesse JamesGarretet
 * Asynchronous Javascript and XML
 * Ajax call example
 ```js
-//step1: 创建对象
+//step1: 调用构造函数创建对象
 var xhr = new XMLHttpRequest();
 //step2: 处理返回的数据，定义如何处理返回数据的方法:
+//onreadystatechange属性是一个函数方法
 xhr.onreadystatechange = function(callback){
     if(xhr.readyState == 4){
         检测状态码，进行数据处理，传入callback
@@ -196,7 +196,7 @@ xhr.setRequestHeader('myHeader', 'myValue');//send the request
 xhr.send(null);
 ```
 
-* open方法
+* open方法：初始化一个请求. 该方法用于JavaScript代码中;如果是本地代码, 使用 openRequest()方法代替
 ```js
 xhr.open(method, url[, async = true])
 ```
@@ -244,3 +244,20 @@ xhr.send(serialize(formdata));
 ```
 
 ### 同源策略
+
+### JSONP
+```js
+//定义一个处理函数
+function handleResponse(response){
+    alert('My name is' + response.name);
+}
+var script = document.createElement('script');
+script.src = 'http:127.0.0.0:3000/json?callback=handleResponse';
+document.body.insertBefore(script, document.body.firstChild);
+//此后会返回json.js
+handleResponse({
+    name:'NetEase'
+})
+//只能用于GET请求
+//优势:不需要单独配置服务器，可兼容低版本浏览器。
+```
