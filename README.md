@@ -246,8 +246,12 @@ xhr.send(serialize(formdata));
 ### 同源策略
 
 ### JSONP
-* 劣势 : 只能用于GET请求
-* 优势 : 不需要单独配置服务器，可向不支持CORS的网站请求数据，可兼容低版本浏览器。
+    * JSON with Padding: 
+        * 是JSON的一种使用模式，可用于解决浏览器跨域数据访问的问题。
+        * 由于同源策略，一般来说，server.example.com的网页无法访问server1.example.com的服务器沟通，而HTML的<script>标签是例外。
+        * JSONP抓到的不是JSON，而是JavaScript,使用JavaScript直译器而不是用JSON解析器解析。
+        * 【劣势】 : 只能用于GET请求
+        * 【优势】 : 不需要单独配置服务器，可向不支持CORS的网站请求数据，可兼容低版本浏览器。
 ```js
 //define a handle function to handle the response sent back;
 function handleResponse(response){
@@ -299,7 +303,6 @@ function post(url, options, callback){
                 continue;
             //value直接转为字符串，call the toString()方法；
             var value = data[name].toString();
-
             name = encodeURIComponent(name);
             value= encodeURIComponent(value);
             pairs.push(name + '=' +value);
