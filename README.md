@@ -313,3 +313,66 @@ function post(url, options, callback){
 }
 //
 ```
+## 数据存储
+* cookie
+* 一小段文本文件
+
+属性名       |      默认值       |      作用
+------------|------------------|--------------
+Name| | 名
+Value| | 值
+Domain|当前文档域|作用域
+Path|当前文档路径|作用路径
+Expires/Max-Age|浏览器会话时间| 失效时间
+Secure| false| https协议时生效
+
+```js
+// trans a chunk of cookie text to a normal Object;
+// example
+function getcookie(){
+    var cookie = {};
+    var all = document.cookie;
+    if(all==='')
+        return cookie;//直接返回一个空对象{}
+    var list = all.split('; ');
+    for(var i=0;i<list.length;i++){
+        var item= list[i]
+        var p = item.indexOf("=");
+        var name = item.substring(0, p);//substring取前不取后；
+        name = decodeURIComponent(name);
+        var value = item.substring(p+1);
+        //serialized data => Object via decodeURIComponent
+        //Object => serialized data via encodeURIComponent
+        value = decodeURIComponent(value);
+        cookie[name] = value;
+    }
+    return cookie;
+}
+```
+Cookie Update/Change
+```js
+document.cookie = 'name = value'
+```
+```js
+function setCookie(name, value, expires, path, domain, secure){
+    var cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+    if(expires)
+        cookie += '; expires=' + expires.toGMTString();
+    if(path)
+        cookie += '; path=' + path;
+    if(domain)
+        cookie += '; domain=' + domain;
+    if(secure)
+        cookie += '; secure=' + secure;
+    document.cookie = cookie;
+}
+```
+```js
+function removeCookie(name, path, domain){
+    //直接把max-age设置为0,j即可删除cookie
+    document.cookie = name + '='
+    +'; path='+path
+    +'; domain='+domain
+    +'; max-age=0';
+}
+```
