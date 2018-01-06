@@ -174,6 +174,7 @@ OPTIONS|决定可以在服务器上执行哪些方法 |否
 
 ### Ajax
 * Asynchronous Javascript and XML
+* 
 * Ajax call example
 ```js
 //step1: 调用构造函数创建对象
