@@ -316,6 +316,9 @@ function post(url, options, callback){
 ## 数据存储
 * cookie
 * 一小段文本文件
+* 流量代价
+* 安全性问题，明文
+* 大小限制。****
 
 属性名       |      默认值       |      作用
 ------------|------------------|--------------
@@ -376,3 +379,4 @@ function removeCookie(name, path, domain){
     +'; max-age=0';
 }
 ```
+
