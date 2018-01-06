@@ -274,13 +274,13 @@ function post(url, options, callback){
     var xhr = null;
     if(window.XMLHttpRequest){
         xhr =  new XMLHttpRequest();
-        //兼容IE
     }else if(window.ActiveXObject){
+        //兼容IE
         xhr = new ActiveXObject("Microsoft.XMLHTTP");
     }else{
         alert("Request are not supportted");
     }
-
+    //onreadystatechange事件触发一个处理函数，callback是如何处理数据
     xhr.onreadystatechange = function(callback){
         //readyState为4，数据拉取完毕
         if(xhr.readyState == 4){
