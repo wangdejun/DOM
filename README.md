@@ -197,19 +197,50 @@ xhr.send(null);
 ```
 
 * open方法
-    ```
-    xhr.open(method, url[, async = true])
-    ```
+```js
+xhr.open(method, url[, async = true])
+```
 * setReuest方法
-    ```js
-    xhr.setRequestHeader(header,value);
-    header: Content-Type
-    value: application/x-www-form-urlencoded
-            multipart/form-data
-    ```
+```js
+xhr.setRequestHeader(header,value);
+header: Content-Type
+value: application/x-www-form-urlencoded
+        multipart/form-data
+```
+
 * send方法
-    ```js
-    //表示FormData
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-    xhr.send([data=null]);
-    ```
+```js
+//表示FormData
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+xhr.send([data=null]);
+```
+
+* serialize data function example
+
+```js
+function serialize(data){
+    if(!data)
+        return;
+    var pairs = [];
+    for(var name in data){
+        if(!data.hasOwnProperty(name))
+            continue;
+        if(typeof data[name]==='function')
+            continue;
+        var value = data[name].toString();
+        name = encodeURIComponent(name);
+        value = encodeURIComponent(value);
+        pairs.push(name+'='+ value);
+    }
+    return pairs.join('&');
+}
+//GET示例
+var url = 'example.json?'+ serialize(formdata);
+xhr.open('get', url, true)//true表示异步操作
+xhr.send(null);//get request
+//POST示例
+xhr.open('post','example.json', true)
+xhr.send(serialize(formdata));
+```
+
+### 同源策略
