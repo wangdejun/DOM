@@ -282,6 +282,7 @@ function post(url, options, callback){
     }
 
     xhr.onreadystatechange = function(callback){
+        //readyState为4，数据拉取完毕
         if(xhr.readyState == 4){
             if((xhr.status>=200 && xhr.status<300)||(xhr.status==304)){
                 callback(xhr.responseText);
@@ -319,6 +320,7 @@ function post(url, options, callback){
 * 流量代价
 * 安全性问题，明文
 * 大小限制。****
+* 
 
 属性名       |      默认值       |      作用
 ------------|------------------|--------------
