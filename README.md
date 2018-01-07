@@ -520,3 +520,27 @@ open(), close() | 开关窗口，关闭窗口
         * 数据类型
         * 默认为text
         * input type可以的类型：hidden, text, search, tel, url, email, password, date, time, number, color, range, checkbox, radio, file, submit, image, reset, button
+
+* input 本地图片预览
+    * onchange
+    * accept
+    * multiple
+    * files
+```html
+<input type='file' accept ='image/*' multiple>
+```
+
+
+```js
+file.addEventlistener('change', function(event){
+    var files = Array.prototype.slice.call(event.target,files,0);
+    files.forEach(function(item){
+        //file2dataurl API lookup for it
+        file2dataurl(item,function(){
+            var image = new Image();
+            parent.appendChild(image);
+            image.src = url;
+        })
+    })
+})
+```
