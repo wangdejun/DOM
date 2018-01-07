@@ -383,3 +383,58 @@ function removeCookie(name, path, domain){
 }
 ```
 
+### LocalStorage/session storage
+
+### Animation
+* a process bar example
+```js
+var process = function(processWrap, drtn, interval, callback){
+    var width =processWrap.clientWidth;
+    var process = process.getElementsByClassName('prcss')[0];
+    var count = drtn/intrvl;
+    var tmpCurrent = CURRENT;
+    var step = function(){
+        if(tmpCurrent != CURRENT){
+            process.style.width = '0px';
+            return;
+        }
+        var des = getNum(process.style.width) + offset;
+        if(des < width){
+            process.style.width = getNum(process.style.width)+offset+'px';
+            setTimeout(step, interval);
+        }else if(des = width){
+            clearInterval(intervalId);
+            process.style.width = '0px';
+            PREV = NEXT;
+            CURRENT = NEXT;
+            NEXT++;
+            NEXT = NEXT % NUMBER;
+            if(callback)
+                callback();
+        }else{
+            process.style.width = width + 'px';
+        }
+    }
+    var timeoutId = setTimeout(step, interval);
+}
+//左右移动动画
+var animation = function(ele, from, to, callback){
+    var distance = Math.abs(to - from);
+    var cover = 0;
+    var symbol = (to-from)/distance;
+    var stepLength = Math.floor((distance*step)/SPEED);
+    var step = function(){
+        var des = cover + stepLength;
+        if(des < distance){
+            cover += stepLength;
+            ele.style.left = getNum(ele.style.left) + stepLength * symbol + 'px';
+        }else{
+            clearInterval(intervalId);
+            ele.style.left = to + 'px';
+            if(callback)
+                callback();
+        }
+    }
+    var intervalId = setInterval(step, STEP);
+}
+```
