@@ -122,9 +122,9 @@
         var sections = {
             1:[
                 {text:'1.1 文档树', value:'1.1'},
-                {text:'1.1 文档树', value:'1.2'},
-                {text:'1.1 文档树', value:'1.3'},
-                {text:'1.1 文档树', value:'1.4'}                
+                {text:'1.2 文档树', value:'1.2'},
+                {text:'1.3 文档树', value:'1.3'},
+                {text:'1.4 文档树', value:'1.4'}                
             ],
             2:[
                 {text:'2.1 文档树', value:'2.1'},
@@ -140,13 +140,15 @@
                 {text:'1.1.4 文档树', value:'1.4'}                
             ],
             '1.2':[
-                {text:'2.1.1 文档树', value:'2.1'},
-                {text:'2.2.2 文档树', value:'2.2'},
-                {text:'2.3.3 文档树', value:'2.3'}
+                {text:'1.2.1 文档树', value:'1.2.1'},
+                {text:'1.2.2 文档树', value:'1.2.2'},
+                {text:'1.2.3 文档树', value:'1.2.3'}
             ]
         };
         var chapterSelect = document.getElementById('chapterSelect');
         var sectionSelect = document.getElementById('sectionSelect');
+        var miniSelect = document.getElementById('miniSelect');
+        
         //定义public method to fill the selection with a list of items
         function fillSelect(select, list){
             //填充之前，先做清理动作；
@@ -167,11 +169,18 @@
             //监听change事件；
             'change',function(event){
                 var value = event.target.value;
-                    list = sections[value]||[];
+                var list = sections[value]||[];
                 //填充节信息；
                 fillSelect(sectionSelect, list);
             }
         )
+        //为mini section注册事件
+        sectionSelect.addEventListener('change',function(){
+            var value = event.target.value;
+            var list = minisections[value]||[];
+            //填充minisection信息：
+            fillSelect(miniSelect, list)
+        })
     </script>
 </body>
 </html>
