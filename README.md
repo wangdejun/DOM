@@ -1,5 +1,4 @@
-
-# DOM知识纵览
+# DOM知识纵览及举例
 
 ## 事件(EVENT)
 <a href='https://www.w3.org/TR/uievents/#event-type-load'>W3C标准</a>****
@@ -39,14 +38,13 @@ var clickHanler = function(event){
     event = event || window.event;
     //Things that you want to do;
 }
-
 addEvent(elem, 'click', clickHanler, false);
 ```
 
 * 属性
     * type
     * target(srcElement)
-    * currentTarge
+    * currentTarget
 * 方法
     * 阻止时间传播
         * event.stopPropagation()(W3C)
@@ -57,7 +55,8 @@ addEvent(elem, 'click', clickHanler, false);
         * Event.returnValue = false(IE低版本)
         * stopImmediatePropagation()
 
-* 拖拽例子：
+* 【拖拽例子】
+
 ```js
 var elem = document.getElementById('div1');
 var clientX, clientY, moving;
@@ -83,7 +82,6 @@ var mouseMoveHandler function(event){
 var mouseUpHandler = function(event){
     moving = !1;
 }
-
 addEvent(elem, 'mousedown', mouseDownHandler);
 addEvent(elem, 'mousemove', mouseMovingHandler);
 addEvent(elem, 'mouseup'， mouseUpHandler);
@@ -120,24 +118,24 @@ addEvent(elem, 'mouseup'， mouseUpHandler);
         * which
 
 ### Event类型：
-* load : window, image, iframe元素
-* unload：关闭页面，window元素
-* error:加载错误， window,image
-* select: Element, input ,textarea
-* abort: window image:触发图片的abort事件。
+    * load : window, image, iframe元素
+    * unload：关闭页面，window元素
+    * error:加载错误， window,image
+    * select: Element, input ,textarea
+    * abort: window image:触发图片的abort事件。
 
-* window:
-    * load
-    * unload:关闭了当前页面
-    * error:浏览器出现异常
-* Image: 依赖网络加载
-    * load: load事件，可知图片长宽
-    * error:
-    * abort:
-常见例子
-    ```html
-    <img onerror = 'this.src = "host/default.jpg"'/>
-    ````
+    * window:
+        * load
+        * unload:关闭了当前页面
+        * error:浏览器出现异常
+    * Image: 依赖网络加载
+        * load: load事件，可知图片长宽
+        * error:
+        * abort:
+    常见例子
+```html
+<img onerror = 'this.src = "host/default.jpg"'/>
+````
 
 ### UIEvent
 * resize | window/iframe
@@ -148,9 +146,7 @@ addEvent(elem, 'mouseup'， mouseUpHandler);
     * 优势：内存分配少，管理少
     * 全部放在顶层，比如window,所有事件都会冒泡到顶部，会处理各种类型各种元素的事件。
 
-
 ## 数据通信
-
 
 方法      |   描述           |  是否包含主体
 ---------|------------------|-------------
@@ -201,6 +197,7 @@ xhr.send(null);
 ```js
 xhr.open(method, url[, async = true])
 ```
+
 * setReuest方法
 ```js
 xhr.setRequestHeader(header,value);
@@ -245,6 +242,9 @@ xhr.send(serialize(formdata));
 ```
 
 ### 同源策略
+    * 协议
+    * 域名
+    * 端口
 
 ### JSONP
 * JSON with Padding:
@@ -267,9 +267,14 @@ handleResponse({
     name:'NetEase'
 })
 ```
+
 * 封装一个POST方法
 ```js
-//
+//**
+// url:{String} 发送请求的地址
+// options:{String} 配置项
+// callback:{Function} 回调函数
+//----
 function post(url, options, callback){
     //初始化xhr
     var xhr = null;
@@ -313,15 +318,16 @@ function post(url, options, callback){
         return pairs.join('&');
     }
 }
-//
 ```
+
 ## 数据存储
 * cookie
-* 一小段文本文件
-* 流量代价
-* 安全性问题，明文
-* 大小限制。****
-* 
+    * 一小段文本文件
+    * 流量代价:每次request都会携带
+    * 安全性问题，明文
+    * 大小限制：4KB
+
+* Value键值的配置项：
 
 属性名       |      默认值       |      作用
 ------------|------------------|--------------
@@ -355,7 +361,7 @@ function getcookie(){
     return cookie;
 }
 ```
-Cookie Update/Change
+* Cookie Update/Change
 ```js
 document.cookie = 'name = value'
 ```
@@ -383,9 +389,13 @@ function removeCookie(name, path, domain){
 }
 ```
 
-### LocalStorage/session storage
+* LocalStorage/SessionStorage
+    * SessionStorage 生命周期存在于会话期间，窗口关闭即消失；
+    * LocalStorage 生命周期常，只要不删除，就一定存在；
+    * 优点：存储量大5MB，没有流量损耗
+    * 缺点：低版本浏览器不兼容(一般采用写成cookie的方法处理)；
 
-### Animation
+### Animation(动画)
 * a process bar example
 ```js
 var process = function(processWrap, drtn, interval, callback){
@@ -439,18 +449,17 @@ var animation = function(ele, from, to, callback){
 }
 ```
 
-
-### BOM
+### BOM（浏览器对象模型）
 * location:浏览定位和导航
     * location.href:浏览器跳转
         * location.assign(url)
         * location.replace(url)
-        * location.reload();
+        * location.reload();重新加载
 * history:浏览历史
-    * history.length;
-    * location.back(int)
-    * location.forward(int)
-    * location.go(int)
+    * history.length;长度
+    * location.back(int)回退几步
+    * location.forward(int)前进几步
+    * location.go(int)跳转
 * screen:属性
     * availHeight
     * Height
@@ -530,7 +539,6 @@ open(), close() | 开关窗口，关闭窗口
 <input type='file' accept ='image/*' multiple>
 ```
 
-
 ```js
 file.addEventlistener('change', function(event){
     var files = Array.prototype.slice.call(event.target,files,0);
@@ -545,7 +553,6 @@ file.addEventlistener('change', function(event){
     })
 })
 ```
-
 * select元素//选择一些指定列表的选项
 * select
     * .name
