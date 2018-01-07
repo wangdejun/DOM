@@ -472,3 +472,30 @@ open(), close() | 开关窗口，关闭窗口
     beforeunload | 和unload类似，但是它提供询问用户是否确定离开的机会。
     resize | 拖动改变浏览器窗口大小时
     scroll | 拖动滚动浏览器时
+
+
+### form表单
+* elements
+    * 包含该表单子孙表单控件(图片按钮除外)
+    * 归属该表单的表单控件(图片按钮除外)
+    * <b>是动态节点集合</b>
+
+```html
+<!--abd都属于form的elements集合-->
+<form id='f'>
+    <p><label><input name='a'></label></p>
+    <p><label><input name='b'></label></p>
+</form>
+<p><label><input name='c'></label></p>
+<p><label><input name='d' form='f'></label></p>
+```
+
+* testForm.elements[0]
+* testForm.elements['a']
+* testForm[0]
+* testForm['a']
+
+* form[name]
+    * 返回id或name为指定名称的表单控件(除图片外)
+    * 如果结果为空，则返回id为指定名称的img元素。
+* form方法

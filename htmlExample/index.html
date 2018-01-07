@@ -15,5 +15,31 @@
     <button onclick="delayedAlert();">Show an alert box after two seconds</button>
     <p></p>
     <button onclick="clearAlert();">Cancel alert before it happens</button>
+    <form method="post"
+         action="https://pizza.example.com/order"
+         enctype="application/x-www-form-urlencoded"
+         name="customer"
+         autocomplete="on"
+    >
+        <p><label>姓名：<input name="custname" required></label></p>
+        <p><label>电话：<input type="tel" name="custtel" required></label></p>
+        <p><label>邮箱：<input type="email" name="custemail" requiq></label></p>
+        <fieldset>
+            <legend>披萨大小</legend>
+            <label><input type="radio" name="size" value="small" required>小</label>
+            <label><input type="radio" name="size" value="medium" required>中</label>
+            <label><input type="radio" name="size" value="large" required>大</label>            
+        </fieldset>
+        <fieldset>
+            <label><input type="checkbox" name="topping" value="bacon">熏肉</label>
+            <label><input type="checkbox" name="topping" value="cheese">奶酪</label>
+            <label><input type="checkbox" name="topping" value="onion">洋葱</label>
+            <label><input type="checkbox" name="topping" value="mushroom">蘑菇</label>            
+        </fieldset>
+        <p>
+            <label>配送时间<input type="time" min="11:00" max="21:00" step="900" name="delivery"></label>
+        </p>
+        <p><button>提交订单</button></p>
+    </form>
 </body>
 </html>
