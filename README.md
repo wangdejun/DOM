@@ -438,3 +438,16 @@ var animation = function(ele, from, to, callback){
     var intervalId = setInterval(step, STEP);
 }
 ```
+
+
+### BOM
+* location:浏览定位和导航
+    * location.href:浏览器跳转
+        * location.assign(url)
+        * location.replace(url)
+        * location.reload();
+* history:浏览历史
+    * history.length;
+    * location.back(int)
+    * location.forward(int)
+    * location.go(int)
