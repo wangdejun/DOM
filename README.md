@@ -417,7 +417,7 @@ var process = function(processWrap, drtn, interval, callback){
     }
     var timeoutId = setTimeout(step, interval);
 }
-//左右移动动画
+//position trans example
 var animation = function(ele, from, to, callback){
     var distance = Math.abs(to - from);
     var cover = 0;
