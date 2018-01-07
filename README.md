@@ -577,3 +577,21 @@ var option = document.createElement('option');
 option.value = '1.2';
 option.textContent = '1.2节点操作';
 ```
+    * 添加选项
+        * insertAdjacentElement
+        * select.add
+    * 删除选项
+        * removeChild
+        * select.remove
+```js
+    var opt12
+    opt12.parentNode.removeChild(opt12)
+    select.remove(12)
+```
+* 级联选择器
+    * onchange
+    * remove
+    * add
+```js
+    
+```
