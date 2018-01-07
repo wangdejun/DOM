@@ -507,4 +507,16 @@ open(), close() | 开关窗口，关闭窗口
     * htmlFor
         * 关联表单控件激活行为
         * 可关联因素：button, input， keygen, meter, output, progress, select, textarea
-        
+
+    * form 
+        * 关联归属表单
+        * 可关联元素：button fieldse input keygen
+        * 制度属性，不可以在程序中修改
+            * label.setAttribute('form', 'newFormId');
+
+*input
+    * type
+        * 元素外观
+        * 数据类型
+        * 默认为text
+        * input type可以的类型：hidden, text, search, tel, url, email, password, date, time, number, range, checkbox, radio, file, submit, image, reset, button
