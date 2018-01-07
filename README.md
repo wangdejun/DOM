@@ -536,6 +536,7 @@ file.addEventlistener('change', function(event){
     var files = Array.prototype.slice.call(event.target,files,0);
     files.forEach(function(item){
         //file2dataurl API lookup for it
+        //file reader API?
         file2dataurl(item,function(){
             var image = new Image();
             parent.appendChild(image);
@@ -544,3 +545,6 @@ file.addEventlistener('change', function(event){
     })
 })
 ```
+
+* select元素//选择一些指定列表的选项
+    * 
