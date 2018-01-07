@@ -519,4 +519,4 @@ open(), close() | 开关窗口，关闭窗口
         * 元素外观
         * 数据类型
         * 默认为text
-        * input type可以的类型：hidden, text, search, tel, url, email, password, date, time, number, range, checkbox, radio, file, submit, image, reset, button
+        * input type可以的类型：hidden, text, search, tel, url, email, password, date, time, number, color, range, checkbox, radio, file, submit, image, reset, button
