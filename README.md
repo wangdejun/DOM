@@ -547,4 +547,33 @@ file.addEventlistener('change', function(event){
 ```
 
 * select元素//选择一些指定列表的选项
-    * 
+* select
+    * .name
+    * .value
+    * .multiple
+    * .options
+    * .selectedOptions
+    * .selectedIndex
+    * .add(element[, before])
+    * .remove()
+* optgroup.
+    * disabled分组不可选
+    * label必选
+* option.
+    * value
+    * text:显示
+    * index:选项索引值
+    * selected:是否被选中
+    * defaultSelected:默认情况下是否被选中
+* select
+    * 创建选型
+    * document.createElement('option') = new Option();
+    * new Option([text[,value[,defaultSelected[,selected]]]])
+    
+```js
+new Option('1.2节点操作', '1.2')
+//相当于
+var option = document.createElement('option');
+option.value = '1.2';
+option.textContent = '1.2节点操作';
+```
