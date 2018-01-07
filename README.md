@@ -499,3 +499,12 @@ open(), close() | 开关窗口，关闭窗口
     * 返回id或name为指定名称的表单控件(除图片外)
     * 如果结果为空，则返回id为指定名称的img元素。
 * form方法
+    * reset() input, keygen, output, select, textarea;
+    * submit()
+    * checkValidity()
+
+* label
+    * htmlFor
+        * 关联表单控件激活行为
+        * 可关联因素：button, input， keygen, meter, output, progress, select, textarea
+        
