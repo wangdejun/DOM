@@ -457,8 +457,18 @@ var animation = function(ele, from, to, callback){
     * availWidth
     * width
 * 方法
+
 method name | description
 ------------|-------------
-alert();confirm();prompt() | 三种对话框
+alert();confirm();prompt() | 三种对话框,会阻塞当前浏览器thread;
 setTimeout(),setInterval()  | 计时器
 open(), close() | 开关窗口，关闭窗口
+
+* window事件
+    属性名 | 描述
+    ------|-----
+    load | 文档和所有图片加载完毕时
+    unload | 离开当前文档时
+    beforeunload | 和unload类似，但是它提供询问用户是否确定离开的机会。
+    resize | 拖动改变浏览器窗口大小时
+    scroll | 拖动滚动浏览器时
