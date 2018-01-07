@@ -451,3 +451,14 @@ var animation = function(ele, from, to, callback){
     * location.back(int)
     * location.forward(int)
     * location.go(int)
+* screen:属性
+    * availHeight
+    * Height
+    * availWidth
+    * width
+* 方法
+method name | description
+------------|-------------
+alert();confirm();prompt() | 三种对话框
+setTimeout(),setInterval()  | 计时器
+open(), close() | 开关窗口，关闭窗口
