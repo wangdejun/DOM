@@ -100,7 +100,7 @@
         </select>
     </form>
 
-    <div>级联选择器</div>
+    <div>3级联选择器</div>
     <hr>
     <form action="">
         <select name="chapter" id="chapterSelect">
@@ -115,6 +115,7 @@
     </form>
     <script>
         // 级联下拉选择器 onchange remove, add方法
+        //define the data
         var chapters = [
             {text:'1.DOM基础', value:'1'},
             {text:'2.事件模型', value:'2'}
@@ -145,6 +146,8 @@
                 {text:'1.2.3 文档树', value:'1.2.3'}
             ]
         };
+
+        //获取selection元素
         var chapterSelect = document.getElementById('chapterSelect');
         var sectionSelect = document.getElementById('sectionSelect');
         var miniSelect = document.getElementById('miniSelect');
