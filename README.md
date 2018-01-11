@@ -4,6 +4,7 @@
 <a href='https://www.w3.org/TR/uievents/#event-type-load'>W3C标准</a>****
 
 * 注册事件(兼容)
+
 ```js
 //如果有addEventListener,则使用，否则式样compatible way方式：
 var addEvent = document.addEventListener ? 
@@ -523,7 +524,7 @@ open(), close() | 开关窗口，关闭窗口
         * 制度属性，不可以在程序中修改
             * label.setAttribute('form', 'newFormId');
 
-*input
+* input
     * type
         * 元素外观
         * 数据类型
@@ -535,6 +536,7 @@ open(), close() | 开关窗口，关闭窗口
     * accept
     * multiple
     * files
+
 ```html
 <input type='file' accept ='image/*' multiple>
 ```
@@ -552,6 +554,7 @@ file.addEventlistener('change', function(event){
         })
     })
 })
+
 ```
 * select元素//选择一些指定列表的选项
 * select
@@ -599,6 +602,3 @@ option.textContent = '1.2节点操作';
     * onchange
     * remove
     * add
-```js
-    
-```
