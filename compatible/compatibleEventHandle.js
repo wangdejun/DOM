@@ -33,6 +33,3 @@ var clickHanler = function(event){
 }
 
 addEvent(elem, 'click', clickHanler, false);
-
-
-事件属性

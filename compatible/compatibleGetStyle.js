@@ -1,5 +1,6 @@
 
 实现兼容的getStyle函数
+
 getStyle函数用于获取元素的实际样式，语法如下：
 var cssPropertyValue = getStyle (element, cssPropertyName)；
 使用示例如下：
