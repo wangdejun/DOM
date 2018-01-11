@@ -68,6 +68,7 @@ var mouseDownHandler = function(event){
     clientY = event.clientY;
     moving = !0;
 }
+
 var mouseMoveHandler function(event){
     if(!moving) return;
     event = event||window.event;
@@ -142,7 +143,6 @@ addEvent(elem, 'mouseup'， mouseUpHandler);
 * resize | window/iframe
 * scroll | document/div
 
-
 ### 事件代理
     * 优势：内存分配少，管理少
     * 全部放在顶层，比如window,所有事件都会冒泡到顶部，会处理各种类型各种元素的事件。
@@ -170,9 +170,9 @@ OPTIONS|决定可以在服务器上执行哪些方法 |否
 500|服务器内部错误|Internal Server Error
 
 ### Ajax
-* Asynchronous Javascript and XML
-* 
+* Asynchronous Javascript and XML short
 * Ajax call example
+
 ```js
 //step1: 调用构造函数创建对象
 var xhr = new XMLHttpRequest();
@@ -195,6 +195,7 @@ xhr.send(null);
 ```
 
 * open方法：初始化一个请求. 该方法用于JavaScript代码中;如果是本地代码, 使用 openRequest()方法代替
+
 ```js
 xhr.open(method, url[, async = true])
 ```
@@ -248,7 +249,7 @@ xhr.send(serialize(formdata));
     * 端口
 
 ### JSONP
-* JSON with Padding:
+* SHORT FOR JSON with Padding:
     * 是JSON的一种使用模式，可用于解决浏览器跨域数据访问的问题。
     * 由于同源策略，一般来说，server.example.com的网页无法访问server1.example.com的服务器沟通，而HTML的script标签是例外。
     * JSONP抓到的不是JSON，而是JavaScript,使用JavaScript直译器而不是用JSON解析器解析。
@@ -280,7 +281,7 @@ function post(url, options, callback){
     //初始化xhr
     var xhr = null;
     if(window.XMLHttpRequest){
-        xhr =  new XMLHttpRequest();
+        xhr =  new XMLHttpRequest();//new 一个 XMLHttpRequest对象；
     }else if(window.ActiveXObject){
         //兼容IE
         xhr = new ActiveXObject("Microsoft.XMLHTTP");
@@ -298,6 +299,7 @@ function post(url, options, callback){
             }
         }
     }
+    //function post 内部定义一个Serialization function, Used for Serialize The data;
     function serailize(data){
         //如果没有data,那么直接返回；
         if(!data)
@@ -321,7 +323,7 @@ function post(url, options, callback){
 }
 ```
 
-## 数据存储
+## 数据存储 DataStorage;
 * cookie
     * 一小段文本文件
     * 流量代价:每次request都会携带
@@ -362,11 +364,25 @@ function getcookie(){
     return cookie;
 }
 ```
-* Cookie Update/Change
+* Cookie Update/Change 修改和改变cookie的值；
+
 ```js
 document.cookie = 'name = value'
 ```
+
+* Expires头缺陷和HTTP1.1的改进
+    * Expires有一个非常大的缺陷，它使用一个固定的时间，要求服务器与客户端的时钟保持严格的同步，并且这一天到来后，服务器还得重新设定新的时间。
+    * HTTP1.1引入了Cathe-Control，它使用max-age指定组件被缓存多久，从请求开始在max-age时间内浏览器使用缓存，之外的使用请求，这样就可以消除Expires的限制,例如Cathe-Control：max-age=315360000
+    * 如果对浏览器兼容性要求很高的话，可以两个都使用。
 ```js
+/*
+ * name名字
+ * value值
+ * expires:缓存到指定时间
+ * path:路径
+ * domain:域名
+ * secure:是否安全当: secure属性设置为true时，cookie只有在https协议下才能上传到服务器，而在http协议下是没法上传的，所以也不会被窃听。
+ */
 function setCookie(name, value, expires, path, domain, secure){
     var cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
     if(expires)
@@ -381,6 +397,7 @@ function setCookie(name, value, expires, path, domain, secure){
 }
 ```
 ```js
+//移除cookie;
 function removeCookie(name, path, domain){
     //直接把max-age设置为0,j即可删除cookie
     document.cookie = name + '='
@@ -392,7 +409,7 @@ function removeCookie(name, path, domain){
 
 * LocalStorage/SessionStorage
     * SessionStorage 生命周期存在于会话期间，窗口关闭即消失；
-    * LocalStorage 生命周期常，只要不删除，就一定存在；
+    * LocalStorage 生命周期常，只要不删除，就一定存在，最大5MB
     * 优点：存储量大5MB，没有流量损耗
     * 缺点：低版本浏览器不兼容(一般采用写成cookie的方法处理)；
 
