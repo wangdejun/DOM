@@ -7,13 +7,11 @@ var getElementNodes = function(parent){
     return childEleNodes;
 }
 //节点操作
-
-getElementById('id')
-
-
+//操作节点之前先缓存节点；
+var id = document.getElementById('id');
 //javascript中children和childNodes的区别
-
-/*1，childNodes：它是标准属性，它返回指定元素的子元素集合，包括HTML节点，所有属性，文本节点。
+/*
+1，childNodes：它是标准属性，它返回指定元素的子元素集合，包括HTML节点，所有属性，文本节点。
 可以通过nodeType来判断是哪种类型的节点，只有当nodeType==1时才是元素节点，2是属性节点，3是文本节点。
 有些人错误的使用()去取该集合元素，下表列出各浏览器对childNodes(i)的支持情况：
 IE6/7/8/Safari/Chrome/Opera	IE9/Firefox
