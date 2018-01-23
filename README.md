@@ -500,7 +500,6 @@ open(), close() | 开关窗口，关闭窗口
     resize | 拖动改变浏览器窗口大小时
     scroll | 拖动滚动浏览器时
 
-
 ### form表单
 * elements
     * 包含该表单子孙表单控件(图片按钮除外)
@@ -517,10 +516,11 @@ open(), close() | 开关窗口，关闭窗口
 <p><label><input name='d' form='f'></label></p>
 ```
 
-* testForm.elements[0]
-* testForm.elements['a']
-* testForm[0]
-* testForm['a']
+* operations on testForm's Elements;
+    * testForm.elements[0]
+    * testForm.elements['a']
+    * testForm[0]
+    * testForm['a']
 
 * form[name]
     * 返回id或name为指定名称的表单控件(除图片外)

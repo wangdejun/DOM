@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul1">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+    </ul>
+
+    <ul id="ul2">delegate
+        <li>100</li>
+        <li>200</li>
+        <li>300</li>
+        <li>400</li>
+    </ul>
+
+    <script>
+        
+        //bind event handler to every target element
+        window.onload = function(){
+            var ul1 = document.getElementById('ul1');
+            var ali = document.getElementsByTagName('li');
+
+            for(var i=0; i<ali.length; i++){
+                ali[i].onclick = function(e){
+                    alert('Firstly, evvent delegation example');
+                    console.log("1")
+                    console.log(e.eventPhase);
+                    console.log(2)
+                    console.log(e.eventPhase);
+                }
+            }
+        }
+
+        window.addEventListener('load', function(){
+            var ul2 = document.getElementById('ul2');
+            ul2.addEventListener('click',function(){alert('Secondley, event delegation example')},true);
+        })
+
+    </script>
+</body>
+</html>
