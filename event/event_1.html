@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    
     <ul id="ul1">
         <li>111</li>
         <li>222</li>
@@ -21,16 +22,23 @@
         <li>400</li>
     </ul>
 
+    <ul id="ul3">delegate target innerHTML
+        <li>100innerHTML</li>
+        <li>200innerHTML</li>
+        <li>300innerHTML</li>
+        <li>400innerHTML</li>
+    </ul>
+
     <script>
         
         //bind event handler to every target element
         window.onload = function(){
             var ul1 = document.getElementById('ul1');
-            var ali = document.getElementsByTagName('li');
+            var ali = document.querySelectorAll('#ul1>li');
 
             for(var i=0; i<ali.length; i++){
                 ali[i].onclick = function(e){
-                    alert('Firstly, evvent delegation example');
+                    alert('Firstly, event delegation example');
                     console.log("1")
                     console.log(e.eventPhase);
                     console.log(2)
@@ -41,8 +49,19 @@
 
         window.addEventListener('load', function(){
             var ul2 = document.getElementById('ul2');
-            ul2.addEventListener('click',function(){alert('Secondley, event delegation example')},true);
+            ul2.addEventListener('click',function(){alert('Secondley, event delegation example')});
         })
+
+        window.onload = function(){
+            var ul3 = document.getElementById('ul3');
+            ul3.addEventListener('click', function(evt){
+                var evt = evt || window.event;
+                var target = evt.target || evt.srcElement;
+                if(target.nodeName.toLowerCase()=='li'){
+                    alert(target.innerHTML);
+                }
+            })
+        }
 
     </script>
 </body>
